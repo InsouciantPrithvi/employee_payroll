@@ -1,0 +1,561 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EmployeeRegisterForm</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="space">
+        <div class="logo">
+          <img
+            src="/assets/profile.png"
+            alt="profileAvatar"
+            width="50px"
+            height="48px"
+          />
+        </div>
+        <div class="headtitle">
+          <div class="title_up">Employee</div>
+          <div class="title_btm">Payroll</div>
+        </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="registerform">
+        <div class="registertitle">Employee Payroll Form</div>
+        <div class="innerform">
+          <div class="formlabel">
+            <label class="formtext">Name</label>
+            <label class="formtext">Profile image</label>
+            <label class="formtext">Gender</label>
+            <label class="formtext">Department</label>
+            <label class="formtext">Salary</label>
+            <label class="formtext">Start Date</label>
+            <label class="formtext">Notes</label>
+          </div>
+          <div class="forminput">
+            <input type="text" class="formname" id="formname" />
+            <div class="formimg">
+              <div class="profileimg" id="profileimg">
+                <input
+                  type="radio"
+                  name="profileimg"
+                  class="profile"
+                  value="profile1"
+                />
+                <img src="/assets/profile1.png" alt="profile1" />
+              </div>
+              <div class="profileimg">
+                <input
+                  type="radio"
+                  name="profileimg"
+                  class="profile"
+                  value="profile2"
+                />
+                <img src="/assets/profile2.png" alt="profile2" />
+              </div>
+              <div class="profileimg">
+                <input
+                  type="radio"
+                  name="profileimg"
+                  class="profile"
+                  value="profile3"
+                />
+                <img src="/assets/profile3.png" alt="profile3" />
+              </div>
+              <div class="profileimg">
+                <input
+                  type="radio"
+                  name="profileimg"
+                  class="profile"
+                  value="profile4"
+                />
+                <img src="/assets/profile4.png" alt="profile4" />
+              </div>
+            </div>
+            <div class="formgender">
+              <input type="radio" name="Gender" value="Male" class="gender" />
+              <label>Male</label>
+              <input type="radio" name="Gender" value="Female" class="gender" />
+              <label>Female</label>
+            </div>
+            <div class="formdepartment">
+              <div>
+                <input
+                  type="checkbox"
+                  name="Department"
+                  id="dept"
+                  class="dept"
+                  value="HR"
+                />
+                <label>HR</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  name="Department"
+                  id="dept"
+                  class="dept"
+                  value="Sales"
+                />
+                <label>Sales</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  name="Department"
+                  id="dept"
+                  class="dept"
+                  value="Finance"
+                />
+                <label>Finance</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  name="Department"
+                  id="dept"
+                  class="dept"
+                  value="Engineer"
+                />
+                <label>Engineer</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  name="Department"
+                  id="dept"
+                  class="dept"
+                  value="Others"
+                />
+                <label>Others</label>
+              </div>
+            </div>
+            <div class="formsalary">
+              <input type="range" name="salary" id="salary" min="4" max="10" />
+              <input
+                type="text"
+                name="salary"
+                id="salarytxt"
+                value=""
+                readonly
+              />
+              <label>LPA</label>
+            </div>
+            <div class="formstartdate">
+              <select name="startday" class="startdate" id="startday">
+                <option value="" disabled selected>Day</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+              </select>
+              <select name="startmonth" class="startmonth" id="startmonth">
+                <option value="" disabled selected>Month</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+              </select>
+              <select name="startyear" class="startyear" id="startyear">
+                <option value="" disabled selected>Year</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+                <option value="2015">2015</option>
+                <option value="2014">2014</option>
+                <option value="2013">2013</option>
+                <option value="2012">2012</option>
+              </select>
+            </div>
+            <div class="formnotes">
+              <textarea name="Notes" class="notes" id="notes"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="formbtn">
+          <div class="btnleft">
+            <input type="button" value="Cancel" class="btn" id="cancel-btn" />
+          </div>
+          <div class="btnright">
+            <input
+              type="button"
+              value="Submit"
+              class="subbtn"
+              id="submit-btn"
+            />
+            <input type="button" value="Reset" class="btn" id="reset-btn" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        if (localStorage.getItem("EditEmpData")) {
+          editData();
+        } else {
+          const empData = {};
+          displayForm(empData);
+        }
+
+        function getIds() {
+          return {
+            empName: $("#formname"),
+            profileImg: $('input[name="profileimg"]'),
+            empGender: $('input[name="Gender"]'),
+            salaryRange: $("#salary"),
+            salaryTxt: $("#salarytxt"),
+            empDept: $('input[name="Department"]'),
+            empStartDay: $("#startday"),
+            empStartMonth: $("#startmonth"),
+            empStartYear: $("#startyear"),
+            empNote: $("#notes"),
+            cancelBtn: $("#cancel-btn"),
+            submitBtn: $("#submit-btn"),
+            resetBtn: $("#reset-btn"),
+          };
+        }
+
+        function displayForm(empData) {
+          const {
+            empName,
+            profileImg,
+            empGender,
+            salaryRange,
+            salaryTxt,
+            empDept,
+            empStartDay,
+            empStartMonth,
+            empStartYear,
+            empNote,
+            cancelBtn,
+            submitBtn,
+            resetBtn,
+          } = getIds();
+
+          submitBtn.click(function () {
+            if (empName.val()) {
+              storeValue(empData);
+            }
+          });
+
+          cancelBtn.click(function () {
+            window.location.href = "/dashboard.html";
+          });
+
+          salaryTxt.val(salaryRange.val());
+          resetBtn.click(function () {
+            empName.val("");
+            profileImg.prop("checked", false);
+            empGender.prop("checked", false);
+            empDept.prop("checked", false);
+            salaryRange.val("");
+            salaryTxt.val("");
+            empStartDay.val("");
+            empStartMonth.val("");
+            empStartYear.val("");
+            empNote.val("");
+          });
+
+          salaryRange.on("input change", function () {
+            salaryTxt.val($(this).val());
+          });
+        }
+
+        function storeValue(empData) {
+          const {
+            empName,
+            profileImg,
+            empGender,
+            salaryRange,
+            empDept,
+            empStartDay,
+            empStartMonth,
+            empStartYear,
+          } = getIds();
+
+          empData.name = empName.val();
+          empData.salary = salaryRange.val();
+          empData.startDate =
+            empStartDay.val() +
+            " " +
+            empStartMonth.val() +
+            " " +
+            empStartYear.val();
+          empData.notes = $("#notes").val();
+
+          profileImg.each(function () {
+            if ($(this).is(":checked")) {
+              empData.profileImg = $(this).val();
+            }
+          });
+
+          empGender.each(function () {
+            if ($(this).is(":checked")) {
+              empData.gender = $(this).val();
+            }
+          });
+
+          const dataDept = [];
+          empDept.each(function () {
+            if ($(this).is(":checked")) {
+              dataDept.push($(this).val());
+            }
+          });
+          empData.dept = dataDept;
+
+          $.ajax({
+            url: "http://localhost:3000/emp_data", // Replace with your JSON server path
+            method: "GET",
+            success: function (data) {
+              let storedData = data.emp_data || [];
+              const existingEmpIndex = storedData.findIndex(
+                (emp) => emp.name === empData.name
+              );
+
+              if (existingEmpIndex !== -1) {
+                storedData[existingEmpIndex] = empData;
+              } else {
+                storedData.push(empData);
+              }
+
+              $.ajax({
+                url: "http://localhost:3000/emp_data", // Replace with your JSON server path
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ emp_data: storedData }),
+                success: function () {
+                  window.location.href = "/dashboard.html";
+                },
+              });
+            },
+          });
+        }
+
+        function editData() {
+          const {
+            empName,
+            profileImg,
+            empGender,
+            salaryRange,
+            salaryTxt,
+            empDept,
+            empStartDay,
+            empStartMonth,
+            empStartYear,
+            submitBtn,
+          } = getIds();
+          const empEditData = JSON.parse(localStorage.getItem("EditEmpData"));
+
+          empName.val(empEditData.name);
+          salaryRange.val(empEditData.salary);
+          salaryTxt.val(empEditData.salary);
+          empStartDay.val(empEditData.startDate.split(" ")[0]);
+          empStartMonth.val(empEditData.startDate.split(" ")[1]);
+          empStartYear.val(empEditData.startDate.split(" ")[2]);
+          $("#notes").val(empEditData.notes);
+
+          profileImg.each(function () {
+            if ($(this).val() === empEditData.profileImg) {
+              $(this).prop("checked", true);
+            }
+          });
+
+          empGender.each(function () {
+            if ($(this).val() === empEditData.gender) {
+              $(this).prop("checked", true);
+            }
+          });
+
+          empDept.each(function () {
+            if (empEditData.dept.includes($(this).val())) {
+              $(this).prop("checked", true);
+            }
+          });
+
+          displayForm(empEditData);
+        }
+      });
+    </script>
+  </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Register Form</title>
+    <link rel="stylesheet" href="index.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+    <div class="header">
+        <div class="space">
+            <div class="logo"><img src="/assets/profile.png" alt="profileAvatar" width="50px" height="48px"></div>
+            <div class="headtitle">
+                <div class="title_up">Employee</div>
+                <div class="title_btm">Payroll</div>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="registerform">
+            <div class="registertitle">Employee Payroll Form</div>
+            <div class="innerform">
+                <div class="formlabel">
+                    <label class="formtext">Name</label>
+                    <label class="formtext">Profile image</label>
+                    <label class="formtext">Gender</label>
+                    <label class="formtext">Department</label>
+                    <label class="formtext">Salary</label>
+                    <label class="formtext">Start Date</label>
+                    <label class="formtext">Notes</label>
+                </div>
+                <div class="forminput">
+                    <input type="text" class="formname" id="formname">
+                    <div class="formimg">
+                        <div class="profileimg" id="profileimg">
+                            <input type="radio" name="profileimg" class="profile" value="profile1">
+                            <img src="/assets/profile1.png" alt="profile1">
+                        </div>
+                        <div class="profileimg">
+                            <input type="radio" name="profileimg" class="profile" value="profile2">
+                            <img src="/assets/profile2.png" alt="profile2">
+                        </div>
+                        <div class="profileimg">
+                            <input type="radio" name="profileimg" class="profile" value="profile3">
+                            <img src="/assets/profile3.png" alt="profile3">
+                        </div>
+                        <div class="profileimg">
+                            <input type="radio" name="profileimg" class="profile" value="profile4">
+                            <img src="/assets/profile4.png" alt="profile4">
+                        </div>
+                    </div>
+                    <div class="formgender">
+                        <input type="radio" name="Gender" value="Male" class="gender">
+                        <label>Male</label>
+                        <input type="radio" name="Gender" value="Female" class="gender">
+                        <label>Female</label>
+                    </div>
+                    <div class="formdepartment">
+                        <div>
+                            <input type="checkbox" name="Department" id="dept" class="dept" value="HR">
+                            <label>HR</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="Department" id="dept" class="dept" value="Sales">
+                            <label>Sales</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="Department" id="dept" class="dept" value="Finance">
+                            <label>Finance</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="Department" id="dept" class="dept" value="Engineer">
+                            <label>Engineer</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="Department" id="dept" class="dept" value="Others">
+                            <label>Others</label>
+                        </div>
+                    </div>
+                    <div class="formsalary">
+                        <input type="range" name="salary" id="salary" min="4" max="10">
+                        <input type="text" name="salary" id="salarytxt" value="" readonly>
+                        <label>LPA</label>
+                    </div>
+                    <div class="formstartdate">
+                        <select name="startday" class="startdate" id="startday">
+                            <option value="" disabled selected>Day</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                        <select name="startmonth" class="startmonth" id="startmonth">
+                            <option value="" disabled selected>Month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                        <select name="startyear" class="startyear" id="startyear">
+                            <option value="" disabled selected>Year</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                            <option value="2014">2014</option>
+                            <option value="2013">2013</option>
+                            <option value="2012">2012</option>
+                        </select>
+                    </div>
+                    <div class="formnotes">
+                        <textarea name="Notes" class="notes" id="notes"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="formbtn">
+                <div class="btnleft">
+                    <input type="button" value="Cancel" class="btn" id="cancel-btn">
+                </div>
+                <div class="btnright">
+                    <input type="button" value="Submit" class="subbtn" id="submit-btn">
+                    <input type="button" value="Reset" class="btn" id="reset-btn">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

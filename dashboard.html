@@ -1,0 +1,217 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Payroll Dashboard</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="space">
+        <div class="logo">
+          <img
+            src="/assests/profile.png"
+            alt="profileAvatar"
+            width="50px"
+            height="48px"
+          />
+        </div>
+        <div class="headtitle">
+          <div class="title_up">Employee</div>
+          <div class="title_btm">Payroll</div>
+        </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="registerform">
+        <div class="registertitle">Employee Payroll Dashboard</div>
+        <div class="innerform">
+          <div class="formbtn">
+            <input type="button" value="Add Employee" class="btn" id="addbtn" />
+            <input type="search" placeholder="Search by Name" id="searchtxt" />
+            <input type="button" value="Search" class="btn" id="searchbtn" />
+          </div>
+          <div id="table-ctn"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $.ajax({
+          url: "http://localhost:3000/emp_data",
+          method: "GET",
+          success: function (response) {
+            const empData = response.emp_data;
+            displayTable(empData);
+          },
+        });
+
+        function displayTable(empData) {
+          const addbtn = $("#addbtn");
+          const empTable = $("#table-ctn");
+          const searchbtn = $("#searchbtn");
+          const searchTxt = $("#searchtxt");
+          let template = `<table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                        <th>Start Date</th>
+                        <th>Actions</th>
+                    </tr>`;
+
+          if (empData && empData.length > 0) {
+            searchbtn.on("click", function () {
+              searchAction(empData, empTable);
+            });
+            empData.forEach((ele) => {
+              let depTemp = "";
+              ele.Dept.forEach((dept) => {
+                depTemp += `<div class="dept-ctn">${dept}</div>`;
+              });
+              template += `<tr>
+                            <td><div class="profileImg"><img src="/assests/${ele.empImg}.png" alt="profileimg"><label>${ele.Name}</label></div></td>
+                            <td>${ele.Gender}</td>
+                            <td><div class="dept-outter">${depTemp}</div></td>
+                            <td>₹ ${ele.Salary} LPA</td>
+                            <td>${ele.StartDate}</td>
+                            <td><div class="action-btn"><img src="/assests/bin.png" alt="delete" width="20px" height="24px" onclick="deleteEmp('${ele.Name}')"> <img src="/assests/edit.png" alt="edit" width="20px" height="20px" onclick="editEmp('${ele.Name}')"></div></td>
+                        </tr>`;
+            });
+            template += `</table>`;
+            empTable.html(template);
+          } else {
+            empTable.html("<center><h1>No Data Found!</h1></center>");
+          }
+
+          addbtn.on("click", function () {
+            window.location.href = "/pages/index.html";
+          });
+
+          searchTxt.on("search", function () {
+            location.reload();
+          });
+        }
+
+        window.deleteEmp = function (empName) {
+          $.ajax({
+            url: "http://localhost:3000/emp_data",
+            method: "GET",
+            success: function (response) {
+              const empData = response.emp_data;
+              const updatedData = empData.filter((ele) => ele.Name !== empName);
+              $.ajax({
+                url: "http://localhost:3000/emp_data",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ emp_data: updatedData }),
+                success: function () {
+                  location.reload();
+                },
+              });
+            },
+          });
+        };
+
+        window.editEmp = function (empName) {
+          $.ajax({
+            url: "http://localhost:3000/emp_data",
+            method: "GET",
+            success: function (response) {
+              const empData = response.emp_data;
+              const editEmp = empData.find((ele) => ele.Name === empName);
+              localStorage.setItem("EditEmpData", JSON.stringify(editEmp));
+              window.location.href = "/pages/index.html";
+            },
+          });
+        };
+
+        function searchAction(empData, empTable) {
+          const searchTxt = $("#searchtxt").val();
+          let template = `<table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                        <th>Start Date</th>
+                        <th>Actions</th>
+                    </tr>`;
+          const result = empData.filter((e) => e.Name === searchTxt);
+
+          if (result.length > 0) {
+            const ele = result[0];
+            let depTemp = "";
+            ele.Dept.forEach((dept) => {
+              depTemp += `<div class="dept-ctn">${dept}</div>`;
+            });
+            template += `<tr>
+                        <td><div class="profileImg"><img src="/assests/${ele.empImg}.png" alt="profileimg"><label>${ele.Name}</label></div></td>
+                        <td>${ele.Gender}</td>
+                        <td><div class="dept-outter">${depTemp}</div></td>
+                        <td>₹ ${ele.Salary} LPA</td>
+                        <td>${ele.StartDate}</td>
+                        <td><div class="action-btn"><img src="/assests/bin.png" alt="delete" width="20px" height="24px" onclick="deleteEmp('${ele.Name}')"> <img src="/assests/edit.png" alt="edit" width="20px" height="20px" onclick="editEmp('${ele.Name}')"></div></td>
+                    </tr>`;
+            template += `</table>`;
+            empTable.html(template);
+          } else {
+            empTable.html("<center><h1>No Data Found!</h1></center>");
+          }
+        }
+      });
+    </script>
+  </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+    <div class="header">
+        <div class="space">
+            <div class="logo"><img src="/assets/profile.png" alt="profileAvatar" width="50px" height="48px"></div>
+            <div class="headtitle">
+                <div class="title_up">Employee</div>
+                <div class="title_btm">Payroll</div>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="dashboard">
+            <div class="dashboardtitle">Employee Dashboard</div>
+            <div class="dashboardcontent">
+                <div class="searchbar">
+                    <input type="text" id="searchtxt" placeholder="Search by name">
+                    <input type="button" id="searchbtn" value="Search">
+                </div>
+                <div class="addbtn">
+                    <input type="button" id="addbtn" value="Add Employee">
+                </div>
+                <div id="table-ctn"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
